@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}" >
+    <script type="text/javascript" th:src="@{js/tether.js}" ></script>
+    <script type="text/javascript" th:src="@{js/jquery-1.11.2.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Throw Error</h3>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <a th:href="@{hello}">默认异常处理</a>
+            <a th:href="@{test}">@ExceptionHandler处理异常</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

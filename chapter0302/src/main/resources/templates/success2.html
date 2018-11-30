@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}" >
+    <script type="text/javascript" th:src="@{js/tether.js}" ></script>
+    <script type="text/javascript" th:src="@{js/jquery-1.11.2.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+</head>
+<body>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">thymeleaf常用功能</h3>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <p>
+                        <span th:if="${user == null}">user不能为空</span>
+                    </p>
+
+                    <p>
+                        <span th:unless="${age == null}">age不能为空</span>
+                    </p>
+
+                    <p>
+                        <div th:switch="${role}">
+                    <p th:case="'root'">管理员</p>
+                    <p th:case="'guest'">游客</p>
+                    <p th:case="*">其他</p>
+                </div>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

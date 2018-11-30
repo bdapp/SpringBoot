@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}" >
+    <script type="text/javascript" th:src="@{js/tether.js}" ></script>
+    <script type="text/javascript" th:src="@{js/jquery-1.11.2.min.js}" ></script>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}" ></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            findBook();
+            findBookList();
+        });
+
+        function findBook() {
+            $.ajax("/findBook", {
+                dataType: "json",
+                type: "post",
+                contentType: "application/json",
+                // data: JSON.stringify({name:"Spring Boot", author:"crackBoy", price: 22.9}),
+                data: {"name":"123", "pass":"eee"},
+                async: true,
+                success: function (data) {
+                    console.log(data);
+                    $("#name").html(data.name);
+                    $("#author").html(data.author);
+                    $("#price").html(data.price);
+                },
+                error: function () {
+                    alert("数据发送失败");
+                }
+            })
+        }
+
+        function findBookList() {
+            /*$.post("/findBookList", null, function (data) {
+                $.each(data, function () {
+                    var div = $("<div>");
+                    $("<p>").html("名称："+this.name).appendTo(div);
+                    $("<p>").html("作者："+this.author).appendTo(div);
+                    $("<p>").html("价格："+this.price).appendTo(div);
+                    $("#book_list").append(div);
+                })
+            }, "json");*/
+            $.ajax("/findBookList", {
+                dataType: "json",
+                type: "post",
+                contentType: "application/json",
+                async: true,
+                success: function (data) {
+                    $.each(data, function (i, d) {
+                        console.log(d);
+                        var div = $("<div class=\"col-md-4\">");
+                        $("<p>").html("名称："+this.name).appendTo(div);
+                        $("<p>").html("作者："+this.author).appendTo(div);
+                        $("<p>").html("价格："+this.price).appendTo(div);
+                        $("#book_list").append(div);
+                    })
+                },
+                error: function () {
+                    alert("失败")
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">JSON</h3>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <p>名称：<span id="name"></span> </p>
+            <p>作者：<span id="author"></span> </p>
+            <p>价格：<span id="price"></span> </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" id="book_list">
+
+    </div>
+</div>
+
+</body>
+</html>
